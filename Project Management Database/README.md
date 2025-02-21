@@ -89,9 +89,6 @@ The tables created for managing the data are as follows:
    - Add new clients, projects, and tasks using the procedures `AddClient`, `AddProject`, `AddTask`, etc.
    - Use functions like `ProjectDuration`, `PendingTasks`, and `RemainingTime` to get detailed information about projects and tasks.
 
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Contributions
 
