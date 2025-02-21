@@ -29,7 +29,7 @@ Additional Languages: Python | Java (if integrated with other technologies)
 
 
 ## 🚀 How to Use the Projects
-1. Clone the repository: https://github.com/your-username/SQL_projects.git
+1. Clone the repository: git clone https://github.com/your-username/SQL_projects.git
 2. Navigate to the desired project directory
 3. Read the specific documentation for execution details
 
