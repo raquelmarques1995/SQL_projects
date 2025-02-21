@@ -17,9 +17,8 @@ Each project has its own documentation with details about:
 
 ## 📖 Repository Structure
 - 📂 `Project Management Database` → This project aims to create a relational database to manage projects for an IT company. The database includes information about clients, projects, tasks, and employees, and offers features to register, update, and monitor the progress of projects and tasks.
-- 📂 `Project2/` - [Project Name 2] → Brief description
-- 📂 `Project3/` - [Project Name 3] → Brief description
-...
+- 📂 `Movies Database` → This repository contains a set of SQL queries developed to work with the movie database. The goal of the project was to create a series of queries to extract and analyze information about movies, directors, and genres in the database.
+
 
 
 ## 🛠 Technologies Used
