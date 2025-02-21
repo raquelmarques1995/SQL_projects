@@ -73,7 +73,7 @@ The tables created for managing the data are as follows:
 ## How to Run
 
 1. **Prerequisites**: 
-   - MySQL (or MariaDB) installed on your machine.
+   - MySQL installed on your machine.
    - Access to the database and permission to create tables and procedures.
 
 2. **Steps to run the project**:
