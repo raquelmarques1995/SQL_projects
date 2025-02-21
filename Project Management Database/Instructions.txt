@@ -1,0 +1,84 @@
+# Base de dados "Project Management"
+
+Este projeto consiste numa base de dados de gestão de projetos para uma empresa de TI. Foi desenvolvido no âmbito do módulo Criação de bases de dados em SQL, utilizando SQL onde são implementadas diversas funcionalidades relacionadas com clientes, projetos, tarefas e colaboradores.
+
+## Estrutura da Base de Dados
+
+A base de dados é composta por 4 tabelas principais:
+
+1. **Client**: Contém informações sobre os clientes da empresa.
+2. **Project**: Contém os dados sobre os projetos, incluindo prazos, progresso e preços.
+3. **Task**: Gera as tarefas associadas aos projetos, incluindo status e prioridade.
+4. **Employee**: Regista os colaboradores da empresa que poderão ser relacionados com projetos e tarefas.
+
+### Funcionalidades Específicas
+
+- **Triggers**: Automatizam ações, como atualizações de status de projetos ou tarefas atrasadas.
+- **Procedures**: Permitem manipulações mais complexas dos dados, como atualizações ou cálculos automatizados.
+- **Functions**: Implementam lógica para consultas específicas, como cálculo de duração de projetos.
+
+
+
+### TRIGGERS
+
+- StatusDelay: Sempre que é feita uma atualização, atualiza automaticamente o status de uma tarefa para "Late" se a data de conclusão for anterior à data atual e o status não for "Done".
+
+- AfterUpdateProject: Sempre que é realizada uma atualização de um projeto, é feito um registo das alterações na tabela Project_log.
+
+- AfterUpdateTask: Sempre que é realizada uma atualização de uma task, é feito um registo das alterações na tabela Task_log.
+
+- ChangeStatusProject: Sempre que é feita a atualização de uma task, atualiza o status de um projeto para "Done" (Concluído) se todas as tarefas associadas estiverem marcadas como "Done" (Concluídas).
+
+- ProgressInsert: Sempre que uma task é inserida, é calculada e atualizada a percentagem de progresso do projeto associado a essa tarefa.
+
+- ProgressUpdate: Sempre que uma task é atualizada, é calculada e atualizada a percentagem de progresso do projeto associado a essa tarefa.
+
+
+### FUNCTIONS
+
+- ProjectDuration: Calcula e retorna a duração de um projeto em meses e dias, com base nas datas de início e fim.
+	- SELECT ProjectDuration (ID do project)
+
+- PendingTasks: Retorna o número de tarefas pendentes de um projeto específico.
+	- SELECT PendingTasks (ID do project)
+
+- RemainingTime: Calcula e retorna o tempo restante para a conclusão de uma tarefa em dias.
+	- SELECT RemainingTime (ID do project)
+
+
+### PROCEDURES
+- AddClient: Insere um novo cliente na tabela de clientes com os detalhes fornecidos.
+	- CALL AddClient() -'client_name', status ('Class A', 'Class B', 'Class C')
+
+- AddProject: Adiciona um novo projeto à tabela de projetos, incluindo informações como cliente, gerente de projeto e datas.
+	- CALL AddProject() - 'project_name', ID_client, 'description', 'start_date', 'end_date', status ('Done', 'In progress', 'Canceled'),PM, price
+
+
+- AddTask: Insere uma nova tarefa na tabela de tarefas e vincula-a a um projeto e colaborador específicos.
+	- CALL AddTask () - 'task_name', ID_project, 'start_date', 'end_date', status ('Done', 'In progress', 'Pending', 'Canceled'), priority ('High', 'Normal', 'Low'),employee
+
+
+- AddEmployee: Regista um novo colaborador na tabela de colaboradores.
+	- CALL AddEmployee() - 'employee_name', 'email', 'role'
+
+
+- Task_Done: Atualiza o status de uma tarefa para "Done".
+	- CALL Task_Done (ID_project,'end_date')
+
+- Delete_Project: Remove um projeto da tabela de projetos e as respetivas tarefas em cascata.
+	- CALL Delete_Project(ID_project)
+
+- Tasks_Employee: Retorna uma lista de tarefas atribuídas a um colaborador específico.
+	- CALL Task_Employee (ID_client)
+
+- UpdateTask: Permite atualizar campos específicos de uma tarefa sem exigir valores para todos os campos. O taskID deve ser sempre mencionado para cruzar com o ID da tabela e para os campos que não necessitam de ser atualizados deve ser utilizado NULL. Não irá substituir o valor por NULL mas sim indicar que deve ser mantido o valor que já estava na tabela (a função coalesce returna o primeiro valor não NULL)
+	- CALL UpdateTask() - taskID, 'newTaskName', 'newStartDate', 'newEndDate', 	newStatus ('Done', 'In progress', 'Pending', 'Late', 'Canceled'), newPriority 	('High', 'Normal', 'Low'), newEmployee
+
+
+- UpdateProject: Permite atualizar campos específicos de um projecto sem exigir valores para todos os campos. O projectID deve ser sempre mencionado para cruzar com o ID da tabela e para os campos que não necessitam de ser atualizados deve ser utilizado NULL. Não irá substituir o valor por NULL mas sim indicar que deve ser mantido o valor que já estava na tabela (a função coalesce returna o primeiro valor não NULL)
+	- CALL UpdateProjec() - projectID, 'newProjectName', newClientID, 'newStartDate', 	'newEndDate', newStatus('Done', 'In progress', 'Pending', 'Canceled', '	Late'),newPM, newPrice
+
+
+- totalTasks: Retorna o total de tarefas por colaborador.
+	- CALL totalTasks()
+
