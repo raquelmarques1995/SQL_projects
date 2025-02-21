@@ -16,9 +16,9 @@ Each project has its own documentation with details about:
 
 
 ## 📖 Repository Structure
-📂 Project1/ - [Project Name 1] → Brief description
-📂 Project2/ - [Project Name 2] → Brief description
-📂 Project3/ - [Project Name 3] → Brief description
+- 📂 `Project Management Database` → This project aims to create a relational database to manage projects for an IT company. The database includes information about clients, projects, tasks, and employees, and offers features to register, update, and monitor the progress of projects and tasks.
+- 📂 `Project2/` - [Project Name 2] → Brief description
+- 📂 `Project3/` - [Project Name 3] → Brief description
 ...
 
 
@@ -29,9 +29,12 @@ Additional Languages: Python | Java (if integrated with other technologies)
 
 
 ## 🚀 How to Use the Projects
-1. Clone the repository: git clone https://github.com/your-username/SQL_projects.git
-2. Navigate to the desired project directory
-3. Read the specific documentation for execution details
+1. Clone the repository:
+```bash
+   git clone https://github.com/your-username/SQL_projects.git
+```
+4. Navigate to the desired project directory
+5. Read the specific documentation for execution details
 
    
 ## 📬 Contact
